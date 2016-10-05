@@ -63,7 +63,7 @@ public class PersonDAOFileImpl
             try {
                 fr.close(); // 關閉檔案
             }
-            catch (IOException e) { }
+            catch (Exception e) { }
         }
 
         return mylist;
