@@ -31,6 +31,15 @@ public class PersonDAOFileImpl
     @Override
     public void add(Person p) {
         ArrayList<Person> mylist = (ArrayList) getList();
+        int MAX_ID = 0;
+        for (Person tp : mylist)
+        {
+            if (tp.ID > MAX_ID)
+            {
+                MAX_ID = tp.ID;
+            }
+        }
+        p.ID = MAX_ID + 1;
         mylist.add(p);
         Type listOfTestObject = new TypeToken<List<Person>>(){}.getType();
         Gson gson = new Gson();
