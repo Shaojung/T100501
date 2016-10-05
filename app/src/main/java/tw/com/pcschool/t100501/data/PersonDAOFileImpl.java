@@ -1,6 +1,7 @@
 package tw.com.pcschool.t100501.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -8,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,13 @@ public class PersonDAOFileImpl
 
     @Override
     public void add(Person p) {
+        ArrayList<Person> mylist = (ArrayList) getList();
+        mylist.add(p);
+        Type listOfTestObject = new TypeToken<List<Person>>(){}.getType();
+        Gson gson = new Gson();
+        String s = gson.toJson(mylist, listOfTestObject);
+        Log.d("ADD", s);
+
 
     }
 
@@ -64,4 +73,6 @@ public class PersonDAOFileImpl
     public void update(Person p) {
 
     }
+
+
 }
