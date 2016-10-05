@@ -2,13 +2,17 @@ package tw.com.pcschool.t100501.data;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,21 @@ public class PersonDAOFileImpl
         String s = gson.toJson(mylist, listOfTestObject);
         Log.d("ADD", s);
 
+        File file = new File(context.getFilesDir().getAbsolutePath(),
+                "person.txt");
+        FileOutputStream fOut;
+        try {
+            // fOut = openFileOutput(fName, MODE_PRIVATE);
+            fOut = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fOut);
+
+            osw.write(s);
+            osw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
