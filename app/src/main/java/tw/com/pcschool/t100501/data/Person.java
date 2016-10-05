@@ -11,8 +11,8 @@ public class Person {
         this.Tel = t;
         this.Addr = a;
     }
-    int ID;
-    String Name;
-    String Tel;
-    String Addr;
+    public int ID;
+    public String Name;
+    public String Tel;
+    public String Addr;
 }
