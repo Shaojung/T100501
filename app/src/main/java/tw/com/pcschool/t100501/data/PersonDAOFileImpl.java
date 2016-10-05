@@ -102,5 +102,21 @@ public class PersonDAOFileImpl
 
     }
 
+    @Override
+    public Person getPerson(int ID) {
+        ArrayList<Person> mylist = (ArrayList) getList();
+        Person rt = null;
+        for (Person p : mylist)
+        {
+            if (p.ID == ID)
+            {
+                rt = p;
+                break;
+            }
+        }
+
+        return rt;
+    }
+
 
 }

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         PersonDAO impl = new PersonDAOFileImpl(MainActivity.this);
-        ArrayList<Person> mylist = (ArrayList) impl.getList();
+        final ArrayList<Person> mylist = (ArrayList) impl.getList();
         String[] names = new String[mylist.size()];
         for (int i=0;i<mylist.size();i++)
         {
@@ -38,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
                                         names);
         lv.setAdapter(adapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent it = new Intent(MainActivity.this, DetailActivity.class);
+                it.putExtra("ID", mylist.get(position).ID);
+                startActivity(it);
+            }
+        });
     }
 
     @Override
