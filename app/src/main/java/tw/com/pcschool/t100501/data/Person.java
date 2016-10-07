@@ -11,6 +11,13 @@ public class Person {
         this.Tel = t;
         this.Addr = a;
     }
+    public Person(int ID, String n, String t, String a)
+    {
+        this.ID = ID;
+        this.Name = n;
+        this.Tel = t;
+        this.Addr = a;
+    }
     public int ID;
     public String Name;
     public String Tel;

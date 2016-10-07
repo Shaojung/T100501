@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import tw.com.pcschool.t100501.data.Person;
@@ -29,6 +30,13 @@ public class DetailActivity extends AppCompatActivity {
         edName.setText(p.Name);
         edTel.setText(p.Tel);
         edAddr.setText(p.Addr);
+    }
+
+    public void clickUpdate(View v)
+    {
+        Person p = new Person(ID, edName.getText().toString(), edTel.getText().toString(), edAddr.getText().toString());
+        PersonDAO impl = new PersonDAOFileImpl(DetailActivity.this);
+        impl.update(p);
     }
 
 }
