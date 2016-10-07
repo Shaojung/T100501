@@ -37,6 +37,15 @@ public class DetailActivity extends AppCompatActivity {
         Person p = new Person(ID, edName.getText().toString(), edTel.getText().toString(), edAddr.getText().toString());
         PersonDAO impl = new PersonDAOFileImpl(DetailActivity.this);
         impl.update(p);
+        finish();
+    }
+
+    public void clickDelete(View v)
+    {
+        Person p = new Person(ID, edName.getText().toString(), edTel.getText().toString(), edAddr.getText().toString());
+        PersonDAO impl = new PersonDAOFileImpl(DetailActivity.this);
+        impl.delete(p);
+        finish();
     }
 
 }
