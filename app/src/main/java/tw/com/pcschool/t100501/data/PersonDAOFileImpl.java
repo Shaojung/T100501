@@ -66,7 +66,34 @@ public class PersonDAOFileImpl
 
     @Override
     public void delete(Person p) {
+        ArrayList<Person> mylist = (ArrayList) getList();
+        for (int i=mylist.size()-1; i>=0;i--)
+        {
+            if (mylist.get(i).ID == p.ID)
+            {
+                mylist.remove(i);
+                break;
+            }
+        }
+        Type listOfTestObject = new TypeToken<List<Person>>(){}.getType();
+        Gson gson = new Gson();
+        String s = gson.toJson(mylist, listOfTestObject);
 
+        File file = new File(context.getFilesDir().getAbsolutePath(),
+                "person.txt");
+        FileOutputStream fOut;
+        try {
+            // fOut = openFileOutput(fName, MODE_PRIVATE);
+            fOut = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fOut);
+
+            osw.write(s);
+            osw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
